@@ -10,7 +10,9 @@
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark d-flex justify-content-between">
    <a class="navbar-brand" href="/">
-    <img src="Logo.png" alt="Logo" style="width:120px;">
+
+    <img src="./Logo.png" alt="Logo" style="width:100px;">
+
   </a>
   <p class="navbar-text"><img src="imgq.png" height="80" width="320"></p>
   <form class="form-inline" methods="GET" action='/'>
@@ -31,14 +33,14 @@
   rows=currenturl.searchParams.get('rows')
   page=currenturl.searchParams.get('page')
   if (catid!=null && catid!=0){
-    var newurl=new URL("http://127.0.0.1:5000/api/products/categories/"+catid)
+    var newurl=new URL("http://bpp.fashions.com/api/products/categories/"+catid)
   }
   else if(q!=null){
-    var newurl=new URL("http://127.0.0.1:5000/api/search")
+    var newurl=new URL("http://bpp.fashions.com/api/search")
     newurl.searchParams.append("q",q)
   }
   else if((catid==0 || catid==null) && q==null){
-    var newurl=new URL("http://127.0.0.1:5000/api/products")
+    var newurl=new URL("http://bpp.fashions.com/api/products")
   }
   if(sort!=null){
     newurl.searchParams.append("sort",sort)
@@ -89,7 +91,7 @@
         html+='<div class="card-body">';
         html+='<h4 class="card-title">'+dataitems[i].title+'</h4>';
         html+='<hr>'
-        html+='<h4 class="card-title">'+dataitems[i].price+'$</h4>';
+        html+='<h4 class="card-title">$'+dataitems[i].price+'</h4>';
         html+='<p class="card-text">'+dataitems[i].productDescription+'</p>';
         html+='<a href="/product.html?product_id='+dataitems[i].id+'" class="align-self-end btn btn-dark stretched-link">View Product</a>'
         html+='</div>';
@@ -117,6 +119,7 @@
     <div id="facets">
     </div>
     <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+
     <div id="sor">
       <select class="custom-select" id="sort">
         <option value="">None</option>
@@ -196,7 +199,7 @@
           window.location.href=pagurl
         })
         function category(val){
-          ceurl=new URL("http://127.0.0.1:8080")
+          ceurl=new URL("http://bpp.fashions.com")
           ceurl.search='';
           ceurl.searchParams.append('id',val)
           window.location.href=ceurl
